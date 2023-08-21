@@ -1,6 +1,13 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import {
+  FETCH_ALL,
+  CREATE,
+  UPDATE,
+  DELETE,
+  LIKE,
+  DISLIKE,
+} from "../constants/actionTypes";
 
-import * as api from '../api/index.js';
+import * as api from "../api/index.js";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -41,6 +48,15 @@ export const likePost = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+export const dislikePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.dislikePost(id);
+
+    dispatch({ type: DISLIKE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const deletePost = (id) => async (dispatch) => {
   try {
@@ -51,7 +67,6 @@ export const deletePost = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
-
 
 // import * as api from '../api/index.js';
 
