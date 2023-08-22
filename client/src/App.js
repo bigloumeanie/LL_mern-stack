@@ -9,6 +9,15 @@ import useStyles from "./styles";
 import memories from "./images/mern-stack.png";
 
 const App = () => {
+  const successCallback = (position) => {
+    console.log(position);
+  };
+
+  const errorCallback = (error) => {
+    console.log(error);
+  };
+
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -29,7 +38,7 @@ const App = () => {
         <Container>
           <Grid
             container
-            justify="space-between"
+            justify-content="space-between"
             alignItems="stretch"
             spacing={3}
           >
