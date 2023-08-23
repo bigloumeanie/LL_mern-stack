@@ -8,17 +8,18 @@ import {
   TextField,
   Input,
 } from "@material-ui/core/";
+
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
-
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { likePost, deletePost, dislikePost } from "../../../actions/posts";
 import useStyles from "./styles";
+import MapApp from "./map";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           onClick={() => setCurrentId(post._id)}
         >
-          <MoreHorizIcon fontSize="default" />
+          <MoreHorizIcon />
         </Button>
       </div>
       <div className={classes.details}>
@@ -79,6 +80,8 @@ const Post = ({ post, setCurrentId }) => {
           Submit
         </Button>
       </CardContent>
+      <MapApp />
+
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
