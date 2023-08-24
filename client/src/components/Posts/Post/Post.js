@@ -41,6 +41,8 @@ const Post = ({ post, setCurrentId }) => {
         title={post.title}
       />
       <div className={classes.overlay}>
+      <MapApp />
+
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
@@ -77,8 +79,6 @@ const Post = ({ post, setCurrentId }) => {
           comments={post.comments || []}
           onAddComment={handleAddComment}
         />
-
-        <MapApp />
       </CardContent>
 
       <CardActions className={classes.cardActions}>

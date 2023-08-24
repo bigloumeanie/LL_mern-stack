@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function MapApp() {
   if (!("geolocation" in navigator)) {
@@ -18,7 +18,7 @@ function MapApp() {
           .then((result) => {
             const city = result.results[0].address_line1;
             console.log(city);
-            return city;
+            return result;
           })
           .catch((error) => console.log("error", error));
       },
@@ -27,6 +27,6 @@ function MapApp() {
       }
     );
   }
+  return <h3>city here</h3>;
 }
-
 export default MapApp;
