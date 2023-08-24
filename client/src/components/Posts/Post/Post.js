@@ -5,10 +5,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  TextField,
-  Input,
 } from "@material-ui/core/";
-
+import CommentSection from "./CommentSection";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -16,14 +14,21 @@ import Button from "@material-ui/core/Button";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-
 import { likePost, deletePost, dislikePost } from "../../../actions/posts";
 import useStyles from "./styles";
 import MapApp from "./map";
+import { updatePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const handleAddComment = (comment) => {
+    // Here, you would typically call an API endpoint to save the comment to the backend
+    // For now, we'll just simulate adding the comment to the post
+    const updatedPost = { ...post, comments: [...post.comments, comment] };
+    // Dispatch Redux action to update the post with the new comment
+    dispatch(updatePost(updatedPost)); // Replace with your actual action and payload
+  };
 
   return (
     <Card className={classes.card}>
@@ -67,20 +72,14 @@ const Post = ({ post, setCurrentId }) => {
         <Typography variant="body2" color="textSecondary" component="p">
           {post.message}
         </Typography>
-        <Input>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Input>
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => {
-            alert("clicked");
-          }}
-        >
-          Submit
-        </Button>
+
+        <CommentSection
+          comments={post.comments || []}
+          onAddComment={handleAddComment}
+        />
+
+        <MapApp />
       </CardContent>
-      <MapApp />
 
       <CardActions className={classes.cardActions}>
         <Button

@@ -5,6 +5,7 @@ import {
   DELETE,
   LIKE,
   DISLIKE,
+  UPDATE_POST_WITH_COMMENT,
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
@@ -57,7 +58,10 @@ export const dislikePost = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
-
+export const updatePostWithComment = (updatedPost) => ({
+  type: UPDATE_POST_WITH_COMMENT,
+  payload: updatedPost,
+});
 export const deletePost = (id) => async (dispatch) => {
   try {
     await api.deletePost(id);

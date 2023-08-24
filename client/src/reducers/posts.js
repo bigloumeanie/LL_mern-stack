@@ -5,6 +5,7 @@ import {
   DELETE,
   LIKE,
   DISLIKE,
+  UPDATE_POST_WITH_COMMENT,
 } from "../constants/actionTypes";
 
 export default (posts = [], action) => {
@@ -27,6 +28,13 @@ export default (posts = [], action) => {
       );
     case DELETE:
       return posts.filter((post) => post._id !== action.payload);
+    case UPDATE_POST_WITH_COMMENT:
+      const { postId, comment } = action.payload;
+      return posts.map((post) =>
+        post._id === postId
+          ? { ...post, comments: [...post.comments, comment] }
+          : post
+      );
     default:
       return posts;
   }

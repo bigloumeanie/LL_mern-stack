@@ -24,9 +24,8 @@ function MapApp() {
           )
             .then((response) => response.json())
             .then((data) => {
-              const city = data.address.city || "Unknown City";
               const state = data.address.state || "Unknown State";
-              setLocationInfo(`${city}, ${state}`);
+              setLocationInfo(`${state}`);
             })
             .catch((error) => {
               console.error("Error fetching location data:", error);
@@ -49,11 +48,7 @@ function MapApp() {
   return (
     <div>
       {lat !== null && lng !== null && (
-        <div>
-          <p>Latitude: {lat}</p>
-          <p>Longitude: {lng}</p>
-          {locationInfo && <p>Location: {locationInfo}</p>}
-        </div>
+        <div>{locationInfo && <p> Location: {locationInfo}</p>}</div>
       )}
     </div>
   );
