@@ -10,8 +10,6 @@ function MapApp() {
         const long = Number(position.coords.longitude);
         const apiKey = "7507ea0c02084a469414d51670a73f72";
         console.log(`Latitude: ${lat}, longitude: ${long}`);
-        console.log(position);
-        console.log(typeof lat);
 
         fetch(
           `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&type=city&lang=en&limit=1&format=json&apiKey=${apiKey}`
