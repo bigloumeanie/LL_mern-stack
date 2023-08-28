@@ -41,7 +41,7 @@ const Post = ({ post, setCurrentId }) => {
         title={post.title}
       />
       <div className={classes.overlay}>
-      <MapApp />
+      {/* <MapApp /> */}
 
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
@@ -75,10 +75,10 @@ const Post = ({ post, setCurrentId }) => {
           {post.message}
         </Typography>
 
-        <CommentSection
+        {/* <CommentSection
           comments={post.comments || []}
           onAddComment={handleAddComment}
-        />
+        /> */}
       </CardContent>
 
       <CardActions className={classes.cardActions}>
