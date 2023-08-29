@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import { getPosts } from "./actions/posts";
@@ -9,15 +8,6 @@ import useStyles from "./styles";
 import memories from "./images/mern-stack.png";
 
 const App = () => {
-  const successCallback = (position) => {
-    console.log(position);
-  };
-
-  const errorCallback = (error) => {
-    console.log(error);
-  };
-
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -28,15 +18,11 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-      <AppBar
-        border-radius="4px"
-        className={classes.appBar}
-        position="static"
-        color="inherit"
-      >
+      <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">
-          FSE Yearbook
+          Full Stack Engineering Yearbook
         </Typography>
+
         <img className={classes.image} src={memories} alt="icon" height="60" />
       </AppBar>
       <Grow in>
