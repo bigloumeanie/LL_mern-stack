@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -20,11 +20,35 @@ import useStyles from "./styles";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
+  const [likeClicked, setLikeClicked] = useState(false);
+  const [dislikeClicked, setDislikeClicked] = useState(false);
+  const [deleteClicked, setDeleteClicked] = useState(false);
+
+  const handleLikeClick = () => {
+    if (!likeClicked) {
+      dispatch(likePost(post._id));
+      setLikeClicked(true);
+    }
+  };
+
+  const handleDislikeClick = () => {
+    if (!dislikeClicked) {
+      dispatch(dislikePost(post._id));
+      setDislikeClicked(true);
+    }
+  };
+
+  const handleDeleteClick = () => {
+    if (!deleteClicked) {
+      dispatch(deletePost(post._id));
+      setDeleteClicked(true);
+    }
+  };
   const classes = useStyles();
   const theme = createTheme({
     palette: {
       background: {
-        paper: "#8CC5D2", // your color
+        paper: "#8CC5D2",
       },
     },
   });
@@ -79,21 +103,24 @@ const Post = ({ post, setCurrentId }) => {
           <Button
             size="small"
             color="primary"
-            onClick={() => dispatch(likePost(post._id))}
+            onClick={handleLikeClick}
+            disabled={likeClicked}
           >
-            <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}{" "}
+            <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
           </Button>
           <Button
             size="small"
             color="primary"
-            onClick={() => dispatch(dislikePost(post._id))}
+            onClick={handleDislikeClick}
+            disabled={dislikeClicked}
           >
-            <ThumbDownAltIcon fontSize="small" /> Dislike {post.dislikeCount}{" "}
+            <ThumbDownAltIcon fontSize="small" /> Dislike {post.dislikeCount}
           </Button>
           <Button
             size="small"
             color="primary"
-            onClick={() => dispatch(deletePost(post._id))}
+            onClick={handleDeleteClick}
+            disabled={deleteClicked}
           >
             <DeleteIcon fontSize="small" /> Delete
           </Button>
