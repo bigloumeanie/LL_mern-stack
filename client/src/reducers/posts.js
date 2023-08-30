@@ -11,7 +11,8 @@ import {
 export default (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      // return action.payload;
+      return action.payload.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     case LIKE:
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
