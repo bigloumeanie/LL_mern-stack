@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardActions,
@@ -24,24 +24,38 @@ const Post = ({ post, setCurrentId }) => {
   const [dislikeClicked, setDislikeClicked] = useState(false);
   const [deleteClicked, setDeleteClicked] = useState(false);
 
+  useEffect(() => {
+    const likeState = sessionStorage.getItem(`likeClicked_${post._id}`);
+    setLikeClicked(likeState === "true");
+
+    const dislikeState = sessionStorage.getItem(`dislikeClicked_${post._id}`);
+    setDislikeClicked(dislikeState === "true");
+
+    const deleteState = sessionStorage.getItem(`deleteClicked_${post._id}`);
+    setDeleteClicked(deleteState === "true");
+  }, [post._id]);
+
   const handleLikeClick = () => {
     if (!likeClicked) {
-      dispatch(likePost(post._id));
+      dispatch(likePost(post._id)); // Assuming likePost is your action creator
       setLikeClicked(true);
+      sessionStorage.setItem(`likeClicked_${post._id}`, "true");
     }
   };
 
   const handleDislikeClick = () => {
     if (!dislikeClicked) {
-      dispatch(dislikePost(post._id));
+      dispatch(dislikePost(post._id)); // Assuming dislikePost is your action creator
       setDislikeClicked(true);
+      sessionStorage.setItem(`dislikeClicked_${post._id}`, "true");
     }
   };
 
   const handleDeleteClick = () => {
     if (!deleteClicked) {
-      dispatch(deletePost(post._id));
+      dispatch(deletePost(post._id)); // Assuming deletePost is your action creator
       setDeleteClicked(true);
+      sessionStorage.setItem(`deleteClicked_${post._id}`, "true");
     }
   };
   const classes = useStyles();
@@ -98,7 +112,6 @@ const Post = ({ post, setCurrentId }) => {
             {post.message}
           </Typography>
         </CardContent>
-
         <CardActions className={classes.cardActions}>
           <Button
             size="small"
