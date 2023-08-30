@@ -11,7 +11,8 @@ export default makeStyles(() => ({
   },
   heading: {
     color: "#8D377C",
-    fontFamily: "Times New Roman",
+    fontFamily: "SignPainter",
+    fontSize: "70px",
   },
   image: {
     marginLeft: "15px",
