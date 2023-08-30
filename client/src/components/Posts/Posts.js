@@ -9,7 +9,6 @@ const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
 
-  // Sort the posts array in descending order by createdAt
   const sortedPosts = [...posts].sort((a, b) => {
     const dateA = new Date(a.createdAt).getTime();
     const dateB = new Date(b.createdAt).getTime();
