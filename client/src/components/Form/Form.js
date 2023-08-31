@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import FileBase from "react-file-base64";
-
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
 
@@ -35,6 +33,10 @@ const Form = ({ currentId, setCurrentId }) => {
     });
   };
 
+  const handleFileChange = (base64) => {
+    setPostData({ ...postData, selectedFile: base64 });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,7 +66,6 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Creator"
           fullWidth
           focused
-          
           value={postData.creator}
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
@@ -103,15 +104,6 @@ const Form = ({ currentId, setCurrentId }) => {
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
-        <div className={classes.fileInput}>
-          <FileBase
-            type="file"
-            multiple={false}
-            onDone={({ base64 }) =>
-              setPostData({ ...postData, selectedFile: base64 })
-            }
-          />
-        </div>
         <Button
           className={classes.buttonSubmit}
           variant="contained"
@@ -120,9 +112,37 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          Submit
+          Post a memory
         </Button>
-        <Button variant="contained" size="small" onClick={clear} fullWidth>
+
+        <div className={classes.fileInput}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            component="label"
+            fullWidth
+           >
+            Add an image
+            <input
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              style={{ display: "none" }}
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(file);
+                  reader.onload = () => {
+                    handleFileChange(reader.result);
+                  };
+                }
+              }}
+            />
+          </Button>
+        </div>
+
+        <Button variant="contained" size="small" onClick={clear} >
           Clear
         </Button>
       </form>

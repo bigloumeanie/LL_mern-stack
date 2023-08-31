@@ -62,7 +62,7 @@ const Post = ({ post, setCurrentId }) => {
   const theme = createTheme({
     palette: {
       background: {
-        paper: "#FF8872",
+        paper: "##ECECEC",
       },
     },
   });
