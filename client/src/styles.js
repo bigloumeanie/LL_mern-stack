@@ -10,9 +10,10 @@ export default makeStyles(() => ({
     alignItems: "center",
   },
   heading: {
-    color: "#8D377C",
-    fontFamily: "SignPainter",
+    color: "#9ce79b",
+    fontFamily: "system-ui",
     fontSize: "70px",
+    fontWeight: "bold",
   },
   image: {
     marginLeft: "15px",

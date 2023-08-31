@@ -37,7 +37,7 @@ const Post = ({ post, setCurrentId }) => {
 
   const handleLikeClick = () => {
     if (!likeClicked) {
-      dispatch(likePost(post._id)); // Assuming likePost is your action creator
+      dispatch(likePost(post._id));
       setLikeClicked(true);
       sessionStorage.setItem(`likeClicked_${post._id}`, "true");
     }
@@ -45,7 +45,7 @@ const Post = ({ post, setCurrentId }) => {
 
   const handleDislikeClick = () => {
     if (!dislikeClicked) {
-      dispatch(dislikePost(post._id)); // Assuming dislikePost is your action creator
+      dispatch(dislikePost(post._id));
       setDislikeClicked(true);
       sessionStorage.setItem(`dislikeClicked_${post._id}`, "true");
     }
@@ -53,7 +53,7 @@ const Post = ({ post, setCurrentId }) => {
 
   const handleDeleteClick = () => {
     if (!deleteClicked) {
-      dispatch(deletePost(post._id)); // Assuming deletePost is your action creator
+      dispatch(deletePost(post._id));
       setDeleteClicked(true);
       sessionStorage.setItem(`deleteClicked_${post._id}`, "true");
     }
@@ -62,11 +62,10 @@ const Post = ({ post, setCurrentId }) => {
   const theme = createTheme({
     palette: {
       background: {
-        paper: "#8CC5D2",
+        paper: "#FF8872",
       },
     },
   });
-
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.card}>

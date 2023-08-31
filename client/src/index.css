@@ -1,6 +1,6 @@
 body {
   background-color: #330000;
-  background-image: url('./images/background_medium.webp');
+  background-image: url("./images/background_medium.webp");
   background-attachment: fixed;
   background-size: cover;
 }

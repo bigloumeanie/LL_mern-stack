@@ -60,9 +60,11 @@ const Form = ({ currentId, setCurrentId }) => {
         </Typography>
         <TextField
           name="creator"
-          variant="outlined"
+          variant="filled"
           label="Creator"
           fullWidth
+          focused
+          
           value={postData.creator}
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
@@ -70,18 +72,20 @@ const Form = ({ currentId, setCurrentId }) => {
         />
         <TextField
           name="title"
-          variant="outlined"
+          variant="filled"
           label="Title"
           fullWidth
+          focused
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
           name="message"
-          variant="outlined"
+          variant="filled"
           label="Message"
           fullWidth
           multiline
+          focused
           minRows={4}
           value={postData.message}
           onChange={(e) =>
@@ -90,9 +94,10 @@ const Form = ({ currentId, setCurrentId }) => {
         />
         <TextField
           name="tags"
-          variant="outlined"
+          variant="filled"
           label="Tags (comma separated)"
           fullWidth
+          focused
           value={postData.tags}
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
