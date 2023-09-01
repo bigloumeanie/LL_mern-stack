@@ -3,6 +3,9 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
+import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
+import PostAddOutlinedIcon from "@material-ui/icons/PostAddOutlined";
+import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -106,12 +109,13 @@ const Form = ({ currentId, setCurrentId }) => {
         />
         <div className={classes.fileInput}>
           <Button
-            variant="contained"
-            color="primary"
+            variant="outlined"
+            color="default"
             size="large"
             component="label"
             fullWidth
-           >
+            startIcon={<AddAPhotoOutlinedIcon />}
+          >
             Add an image
             <input
               type="file"
@@ -138,11 +142,17 @@ const Form = ({ currentId, setCurrentId }) => {
           size="large"
           type="submit"
           fullWidth
+          startIcon={<PostAddOutlinedIcon />}
         >
           Post a memory
         </Button>
 
-        <Button variant="contained" size="small" onClick={clear} >
+        <Button
+          variant="contained"
+          size="small"
+          onClick={clear}
+          startIcon={<ClearOutlinedIcon />}
+        >
           Clear
         </Button>
       </form>

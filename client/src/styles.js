@@ -10,7 +10,7 @@ export default makeStyles(() => ({
     alignItems: "center",
   },
   heading: {
-    color: "#9ce79b",
+    color: "#3F51B5",
     fontFamily: "system-ui",
     fontSize: "70px",
     fontWeight: "bold",
