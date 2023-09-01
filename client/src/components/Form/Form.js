@@ -104,17 +104,6 @@ const Form = ({ currentId, setCurrentId }) => {
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
-        <Button
-          className={classes.buttonSubmit}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
-          fullWidth
-        >
-          Post a memory
-        </Button>
-
         <div className={classes.fileInput}>
           <Button
             variant="contained"
@@ -141,6 +130,17 @@ const Form = ({ currentId, setCurrentId }) => {
             />
           </Button>
         </div>
+
+        <Button
+          className={classes.buttonSubmit}
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          fullWidth
+        >
+          Post a memory
+        </Button>
 
         <Button variant="contained" size="small" onClick={clear} >
           Clear
